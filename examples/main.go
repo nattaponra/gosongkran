@@ -12,10 +12,20 @@ import (
 func main() {
 	r := gin.Default()
 
+	config := core.LoadConfig()
+
+	config.DBDriver = "postgres"
+	config.DBHost = "localhost"
+	config.DBPort = "5432"
+	config.DBUser = "postgres"
+	config.DBPass = "postgres"
+	config.DBName = "postgres"
+
 	app := &core.AppContext{
 		Router: r,
-		Config: core.LoadConfig(),
+		Config: config,
 		Logger: log.Default(),
+		DB:     core.InitDatabase(config),
 	}
 
 	core.RegisterModules(

@@ -15,10 +15,11 @@ type AppConfig struct {
 	JWTSecret string `env:"JWT_SECRET" envDefault:"secret"`
 }
 
-func LoadConfig() (config *AppConfig) {
+func LoadConfig() *AppConfig {
+	config := &AppConfig{}
 	err := env.Parse(config)
 	if err != nil {
 		panic("Failed to load config: " + err.Error())
 	}
-	return
+	return config
 }
