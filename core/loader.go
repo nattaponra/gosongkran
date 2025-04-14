@@ -4,8 +4,8 @@ import "log"
 
 var registeredModules []Module
 
-func RegisterModule(m Module) {
-	registeredModules = append(registeredModules, m)
+func RegisterModules(m ...Module) {
+	registeredModules = append(registeredModules, m...)
 }
 
 func InitModules(app *AppContext) {

@@ -13,7 +13,3 @@ func (m *AuthModule) Register(app *core.AppContext) {
 	group.POST("/login", LoginHandler)
 	group.POST("/register", RegisterHandler)
 }
-
-func init() {
-	core.RegisterModule(&AuthModule{}) // Auto-register during package init
-}

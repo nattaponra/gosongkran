@@ -5,6 +5,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/nattaponra/gosongkran/core"
+	"github.com/nattaponra/gosongkran/modules/auth"
+	"github.com/nattaponra/gosongkran/modules/user"
 )
 
 func main() {
@@ -16,6 +18,10 @@ func main() {
 		Logger: log.Default(),
 	}
 
+	core.RegisterModules(
+		&auth.AuthModule{},
+		&user.UserModule{},
+	)
 	core.InitModules(app)
 
 	r.Run(":8080")

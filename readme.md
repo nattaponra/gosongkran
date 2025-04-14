@@ -68,21 +68,35 @@ type AppContext struct {
 ### ✨ Example Usage
 main.go
 ```go
+package main
+
 import (
+	"log"
+
+	"github.com/gin-gonic/gin"
 	"github.com/nattaponra/gosongkran/core"
-	_ "github.com/nattaponra/gosongkran/modules/auth"
-	_ "github.com/nattaponra/gosongkran/modules/user"
+	"github.com/nattaponra/gosongkran/modules/auth"
+	"github.com/nattaponra/gosongkran/modules/user"
 )
 
 func main() {
+	r := gin.Default()
+
 	app := &core.AppContext{
-		Router: gin.Default(),
+		Router: r,
+		Config: map[string]interface{}{},
 		Logger: log.Default(),
 	}
 
+	core.RegisterModules(
+		&auth.AuthModule{},
+		&user.UserModule{},
+	)
 	core.InitModules(app)
-	app.Router.Run(":8080")
+
+	r.Run(":8080")
 }
+
 ```
 
 ### 🔐 Auth Module Example
