@@ -14,10 +14,7 @@ func main() {
 
 	app := &core.AppContext{
 		Router: r,
-		Config: core.AppConfig{
-			JWTSecret: "secret",
-			Port:      "8014",
-		},
+		Config: core.LoadConfig(),
 		Logger: log.Default(),
 	}
 

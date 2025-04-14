@@ -4,18 +4,14 @@ import (
 	"log"
 
 	"github.com/gin-gonic/gin"
+	"github.com/go-redis/redis"
+	"gorm.io/gorm"
 )
 
 type AppContext struct {
 	Router *gin.Engine
-	Config AppConfig
+	Config *AppConfig
 	Logger *log.Logger
-	// DB     *gorm.DB     // If using DB
-	// Cache  *redis.Client // Optional
-}
-type AppConfig struct {
-	JWTSecret string
-	AppEnv    string
-	Port      string
-	// Add more config values here
+	DB     *gorm.DB
+	Cache  *redis.Client
 }

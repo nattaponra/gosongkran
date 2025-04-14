@@ -15,5 +15,5 @@ func (m *UserModule) Register(app *core.AppContext) {
 	group := app.Router.Group("/users")
 
 	// Protected route
-	group.GET("/me", auth.JWTMiddleware(&app.Config), GetProfileHandler)
+	group.GET("/me", auth.JWTMiddleware(app.Config), GetProfileHandler)
 }
