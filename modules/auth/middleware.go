@@ -6,9 +6,10 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt/v5"
+	"github.com/nattaponra/gosongkran/core"
 )
 
-func JWTMiddleware() gin.HandlerFunc {
+func JWTMiddleware(config *core.AppConfig) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		authHeader := c.GetHeader("Authorization")
 		if !strings.HasPrefix(authHeader, "Bearer ") {
@@ -19,7 +20,7 @@ func JWTMiddleware() gin.HandlerFunc {
 		tokenStr := strings.TrimPrefix(authHeader, "Bearer ")
 
 		token, err := jwt.Parse(tokenStr, func(token *jwt.Token) (interface{}, error) {
-			return jwtSecret, nil
+			return config.JWTSecret, nil
 		})
 
 		if err != nil || !token.Valid {

@@ -1,0 +1,21 @@
+@localhost=http://localhost:8014
+
+
+### Register
+POST {{localhost}}/auth/register HTTP/1.1
+content-type: application/json
+
+{
+    "username": "artizno",
+    "password": "testpassword"
+}
+
+### Login
+POST {{localhost}}/auth/login HTTP/1.1
+content-type: application/json
+
+{
+    "username": "artizno",
+    "password": "testpassword"
+}
+

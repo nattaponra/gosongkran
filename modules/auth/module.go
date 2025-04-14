@@ -2,7 +2,9 @@ package auth
 
 import "github.com/nattaponra/gosongkran/core"
 
-type AuthModule struct{}
+type AuthModule struct {
+	JwtSecret string
+}
 
 func (m *AuthModule) Name() string {
 	return "auth"

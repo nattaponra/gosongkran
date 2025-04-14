@@ -14,7 +14,10 @@ func main() {
 
 	app := &core.AppContext{
 		Router: r,
-		Config: map[string]interface{}{},
+		Config: core.AppConfig{
+			JWTSecret: "secret",
+			Port:      "8014",
+		},
 		Logger: log.Default(),
 	}
 
@@ -24,5 +27,5 @@ func main() {
 	)
 	core.InitModules(app)
 
-	r.Run(":8080")
+	r.Run(":" + app.Config.Port)
 }
